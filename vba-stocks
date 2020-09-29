@@ -1,0 +1,57 @@
+'Hi, I only did the easy solution due to time constraints. Thanks for the Bootcamp, I am enjoying every bit.
+
+'## Instructions
+
+'* Create a script that will loop through all the stocks for one year and output the following information.
+
+ ' * The ticker symbol.
+
+  '* The total stock volume of the stock.
+
+
+Sub Volume()
+
+For Each ws In Worksheets
+
+ws.Activate
+
+Dim Stock_Name As String
+
+Dim Stock_Total As Double
+
+Stock_Total = 0
+
+Dim Summary_Table_Row As Integer
+
+Summary_Table_Row = 2
+
+Last_Row = Cells(Rows.Count, 1).End(xlUp).Row
+
+For i = 2 To Last_Row
+
+If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+
+    Stock_Name = Cells(i, 1).Value
+
+    Stock_Total = Stock_Total + Cells(i, 7).Value
+
+    Range("I" & Summary_Table_Row).Value = Stock_Name
+    
+    Range("J" & Summary_Table_Row).Value = Stock_Total
+
+    Summary_Table_Row = Summary_Table_Row + 1
+    
+    Stock_Total = 0
+
+Else
+    
+    Stock_Total = Stock_Total + Cells(i, 7).Value
+
+End If
+
+Next i
+
+Next ws
+
+End Sub
+
